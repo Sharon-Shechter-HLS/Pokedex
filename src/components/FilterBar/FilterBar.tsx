@@ -15,27 +15,27 @@ const Headline = ({ children, className = "" }: HeadlineProps) => (
   </h1>
 );
 
-type PageToolbarProps = {
+type FilterToolbarProps = {
   title: React.ReactNode;
   searchValue: string;
   onSearchChange: (value: string) => void;
-  options: Array<{ label: string; value: string }>;
+  filterOptions: Array<{ label: string; value: string }>; // Added this property
   filterValue: string | null;
   onFilterChange: (value: string | null) => void;
   filterLabel?: string;
   className?: string;
 };
 
-export const PageToolbar = ({
+export const FilterBar = ({
   title,
   searchValue,
   onSearchChange,
-  options,
+  filterOptions, // Updated to use the new property
   filterValue,
   onFilterChange,
   filterLabel = "Filter",
   className = "",
-}: PageToolbarProps) => (
+}: FilterToolbarProps) => (
   <div className={`w-full mb-4 ${className}`}>
     <Headline className="text-2xl mb-4">{title}</Headline>
     <div className="flex items-center justify-between bg-transparent rounded-md">
@@ -46,7 +46,7 @@ export const PageToolbar = ({
         size="md"
       />
       <Filter
-        options={options}
+        options={filterOptions} // Updated to use the new property
         value={filterValue}
         onChange={onFilterChange}
         label={filterLabel}
@@ -55,4 +55,4 @@ export const PageToolbar = ({
   </div>
 );
 
-export default PageToolbar;
+export default FilterBar;
