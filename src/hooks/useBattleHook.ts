@@ -12,11 +12,11 @@ export function useBattleState({
   starter: "user" | "opponent";
 }) {
   const [turn, setTurn] = useState<"user" | "opponent">(starter);
-  const [userLife, setUserLife] = useState(champion1Data.base.HP); 
-  const [opponentLife, setOpponentLife] = useState(champion2Data.base.HP); 
+  const [userLife, setUserLife] = useState(champion1Data.base.HP);
+  const [opponentLife, setOpponentLife] = useState(champion2Data.base.HP);
   const [dialogue, setDialogue] = useState<string>(
     starter === "user"
-      ? `${champion1Data.name.english} is starting the fight!` 
+      ? `${champion1Data.name.english} is starting the fight!`
       : `${champion2Data.name.english} is starting the fight!`
   );
   const [showEndModal, setShowEndModal] = useState(false);
@@ -26,8 +26,12 @@ export function useBattleState({
   const [isAttacking, setIsAttacking] = useState(false);
   const [opponentCaught, setOpponentCaught] = useState(false);
 
+  // Random chance for catching (10%)
   const canCatchPokemon =
-    turn === "user" && opponentLife > 0 && opponentLife < champion2Data.base.HP * 0.8; 
+    turn === "user" &&
+    opponentLife > 0 &&
+    Math.random() < 0.1; 
+
   useEffect(() => {
     if (userLife <= 0) {
       setWinner(champion2Data.name.english);
@@ -44,15 +48,15 @@ export function useBattleState({
     setIsAttacking(true);
     setDialogue(
       turn === "user"
-        ? `${champion1Data.name.english} is attacking!` 
-        : `${champion2Data.name.english} is attacking!` 
+        ? `${champion1Data.name.english} is attacking!`
+        : `${champion2Data.name.english} is attacking!`
     );
 
     if (turn === "user") {
       const newLife = await calculateLife(
-        champion1Data.base.Speed, 
-        opponentLife,            
-        champion2Data.base.HP    
+        champion1Data.base.Speed,
+        opponentLife,
+        champion2Data.base.HP
       );
       setTimeout(() => {
         setOpponentLife(newLife);
@@ -62,9 +66,9 @@ export function useBattleState({
       }, 700);
     } else {
       const newLife = await calculateLife(
-        champion2Data.base.Speed, 
-        userLife,                 
-        champion1Data.base.HP     
+        champion2Data.base.Speed,
+        userLife,
+        champion1Data.base.HP
       );
       setTimeout(() => {
         setUserLife(newLife);
@@ -76,15 +80,15 @@ export function useBattleState({
   };
 
   const handleCatch = () => {
-  setOpponentCaught(true); 
-  setWinner(champion1Data.name.english);
-  setDialogue(`${champion2Data.name.english} was caught!`);
+    setOpponentCaught(true);
+    setWinner(champion1Data.name.english);
+    setDialogue(`${champion2Data.name.english} was caught!`);
 
-  // Add a 2-second delay before showing the end modal
-  setTimeout(() => {
-    setShowEndModal(true);
-  }, 1000); 
-};
+    // Add a 2-second delay before showing the end modal
+    setTimeout(() => {
+      setShowEndModal(true);
+    }, 1000);
+  };
 
   const resetBattle = () => {
     setUserLife(champion1Data.base.HP);
@@ -109,7 +113,7 @@ export function useBattleState({
     opponentLife,
     dialogue,
     showEndModal,
-    setShowEndModal, // Add this line
+    setShowEndModal,
     winner,
     showChooseModal,
     setShowChooseModal,

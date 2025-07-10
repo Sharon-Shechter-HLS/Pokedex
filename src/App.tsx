@@ -27,7 +27,7 @@ const AppContent = () => {
       name: (
         <span className="flex items-center gap-2">
           My Pokémons
-            <img src={pokadexIcon} alt="Pokédex Icon" className="w-5 h-5" /> {/* Add the icon */}
+            <img src={pokadexIcon} alt="Pokédex Icon" className="w-5 h-5" /> 
         </span>
       ),
       href: "/my-pokemons",
@@ -41,7 +41,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/all-pokemons" element={<AllpokemonsPage />} />
         <Route path="/my-pokemons" element={<MypokemonsPage />} />
-        <Route path="/arena" element={<ArenaPage />} /> {/* Use ArenaPage here */}
+        <Route path="/arena" element={<ArenaPage />} /> 
         <Route path="/" element={<Navigate to="/all-pokemons" replace />} />
       </Routes>
     </>
