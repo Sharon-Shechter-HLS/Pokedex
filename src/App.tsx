@@ -10,6 +10,7 @@ import { Header } from "./components/Header/Header";
 import AllpokemonsPage from "./pages/AllpokemonsPage";
 import MypokemonsPage from "./pages/MypokemonsPage";
 import ArenaPage from "./pages/arenaPage"; // Import the ArenaPage component
+import pokadexIcon from "./assets/pokadexIcon.svg"; // Import the Pokédex icon
 import "./App.css";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const AppContent = () => {
       name: (
         <span className="flex items-center gap-2">
           My Pokémons
+            <img src={pokadexIcon} alt="Pokédex Icon" className="w-5 h-5" /> {/* Add the icon */}
         </span>
       ),
       href: "/my-pokemons",
