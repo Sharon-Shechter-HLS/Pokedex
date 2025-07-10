@@ -9,8 +9,8 @@ import {
 import { Header } from "./components/Header/Header";
 import AllpokemonsPage from "./pages/AllpokemonsPage";
 import MypokemonsPage from "./pages/MypokemonsPage";
-import ArenaPage from "./pages/arenaPage"; // Import the ArenaPage component
-import pokadexIcon from "./assets/pokadexIcon.svg"; // Import the Pokédex icon
+import ArenaPage from "./pages/ArenaPage";
+import pokadexIcon from "./assets/pokadexIcon.svg";
 import "./App.css";
 
 const queryClient = new QueryClient();
@@ -52,7 +52,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AppContent />
+       <div className="bg-primary-50"> {/* Apply the background class */}
+          <AppContent />
+        </div>
       </BrowserRouter>
     </QueryClientProvider>
   );
